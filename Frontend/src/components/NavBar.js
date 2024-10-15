@@ -4,6 +4,7 @@ import { RiMenu5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useUser } from "../App";
 import { FaUserCircle } from "react-icons/fa";
+import { useAuth } from "../contexts/Authcontext";
 
 
 const navlinks = [
@@ -33,8 +34,8 @@ function NavBar() {
     const [ isOpen, setIsopen ] = useState(false);
     const navigate = useNavigate();
 
-    const { isLoggedIn } = useUser();
-    console.log(isLoggedIn)
+    const { isAuthenticated } = useAuth();
+    console.log(isAuthenticated)
     
     const handleOpen = () => {
         setIsopen(!isOpen);
@@ -54,7 +55,7 @@ function NavBar() {
                     </div>
                     <Link to={'/contacts'}  className="border rounded px-2 py-1 border-[#6300B3] text-[#6300B3] font-semibold">Contact Us</Link>
                     {
-                        isLoggedIn ? 
+                        isAuthenticated ? 
                             <div onClick={()=> navigate('/dashboard')} className="cursor-pointer">
                                 <FaUserCircle size={34} />
 

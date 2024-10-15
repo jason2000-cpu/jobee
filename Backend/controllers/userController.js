@@ -16,7 +16,7 @@ const generateToken = (user) => {
 exports.register = async (req, res) => {
   console.log(req.body)
   try {
-    const { fullname, username, email, password } = req.body;
+    const { fullname, phone, email, password } = req.body;
 
     // Check if user exists
     const userExists = await User.findOne({ email });
@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
     }
 
     // Create new user
-    const user = await User.create({ fullname, username, email, password });
+    const user = await User.create({ fullname, phone, email, password });
 
     // Generate token
     const token = generateToken(user);
@@ -41,6 +41,7 @@ exports.register = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message });
   }
 };
@@ -51,6 +52,7 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    console.log(req.body);
     // Check if user exists
     const user = await User.findOne({ email }).select('+password');
     if (!user) {

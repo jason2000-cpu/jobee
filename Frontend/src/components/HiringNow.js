@@ -1,6 +1,9 @@
-import { allJobs } from "../utils/featuredJobsDetails"
+import useJobPosts from "../hooks/useJobPosts";
 
 function HiringNow() {
+    const { isLoading, jobPosts } = useJobPosts();
+
+
     return (
         <div className="my-20">
             <div className="my-6 flex justify-center items-center space-x-1 md:space-x-2">
@@ -10,11 +13,14 @@ function HiringNow() {
             </div>
             <div className="md:flex  mx-8 mt-10 space-y-10  md:space-x-16">
                 {
-                    allJobs.map((detail) => (
-                        <div>
-                            <img className="h-24" src={detail.company_logo_url} alt={detail.hiring_company} />
-                        </div>
-                    ))
+                    isLoading ? 
+                        (<div>LOADING....</div>) 
+                        :
+                        jobPosts.map((detail) => (
+                            <div>
+                                <img className="h-24" src={detail.company_logo_url} alt={detail.hiring_company} />
+                            </div>
+                        ))
                 }
             </div>
 

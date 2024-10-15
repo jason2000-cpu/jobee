@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AuthProvider from './contexts/Authcontext';
 import './App.css';
 import Landing from './pages/Landing';
 import JobSearch from './pages/JobSearch';
@@ -16,10 +17,10 @@ import Settings from './pages/User/Settings';
 const userContext = createContext();
 
 function App() {
-  const [ isLoggedIn , setIsLoggedIn ] = useState(true);
+  const [ isLoggedIn , setIsLoggedIn ] = useState(false);
 
   return (
-    <userContext.Provider value={{ isLoggedIn }} >
+    <AuthProvider >
       <div className="App">
         <Router>
           <Routes>
@@ -37,7 +38,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-    </userContext.Provider>
+    </AuthProvider>
   );
 }
 

@@ -1,9 +1,11 @@
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { BsFillBookmarkDashFill } from "react-icons/bs";
 import { HiBriefcase } from "react-icons/hi2";
 import { PiReadCvLogoFill } from "react-icons/pi";
 import { PiGearFill } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { HiOutlineLogout } from "react-icons/hi";
+
 
 
 const navLinks = [
@@ -42,10 +44,16 @@ const navLinks = [
 ]
 
 function SideNav() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear('user');
+        navigate('/login');
+    }
     return (
-        <div className="hidden md:flex flex-col px-4 space-y-20  border h-[100vh] pt-6 ">
+        <div className="hidden md:flex flex-col px-4 space-y-20 text-white h-[100vh] pt-6 bg-[#6300B3] ">
             <div className="text-center">
-                <span className="font-bold text-xl italic text-[#6300B3]">JOBEE</span>
+                <span className="font-bold text-xl italic">JOBEE</span>
             </div>
             <div className="space-y-8">
                 {
@@ -56,6 +64,10 @@ function SideNav() {
                         </Link>
                     ))
                 }
+                <div onClick={handleLogout} className='flex space-x-2 w-32 cursor-pointer'>
+                    <HiOutlineLogout size={24} />
+                    <span>Logout </span>
+                </div>
             </div>
         </div>
     )

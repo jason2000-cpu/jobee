@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CustmInput from "../UI/CustmInput";
+import { handleSuccess } from "../UI/AlertHandler";
 
 
 function ProfileForm({ user, hidden }) {
@@ -15,6 +16,7 @@ function ProfileForm({ user, hidden }) {
 
     const handleSubmit = () => {
         console.log(formData);
+        handleSuccess('Profile Info Saved')
     }
 
     return (
@@ -22,15 +24,15 @@ function ProfileForm({ user, hidden }) {
             <span className="text-2xl font-bold">Personal Information</span>
             <div className="space-y-4 mt-16">
                 <div className="md:grid grid-cols-2 space-y-4 md:space-y-0 md:space-x-12 w-full">
-                    <CustmInput handleChange={handleChange} label={'Full Name'} name={'username'} placeholder={'eg. John Doe'} />
-                    <CustmInput handleChange={handleChange} label={'Email'} name={'email'} type="email" placeholder={'email'} />
+                    <CustmInput handleChange={handleChange} label={'Full Name'} name={'fullname'} placeholder={'eg. John Doe'} />
+                    <CustmInput handleChange={handleChange} label={'Username'} name={'username'} placeholder={'username'} />
                 </div>
                 <div  className="md:grid grid-cols-2 space-y-4 md:space-y-0 md:space-x-12 w-full">
+                    <CustmInput handleChange={handleChange} label={'Email'} name={'email'} type={'email'} placeholder={'email'} />
                     <CustmInput handleChange={handleChange} label={'Phone'} name={'phone'} placeholder={'phone'} />
-                    <CustmInput handleChange={handleChange} label={'Location'} name={'location'} placeholder={'location'} />
                 </div>
                 <div  className="md:grid grid-cols-2 space-y-4 md:space-y-0 md:space-x-12 w-full">
-                    <CustmInput handleChange={handleChange} label={'Full Name'} name={'username'} placeholder={'username/email'} />
+                    <CustmInput handleChange={handleChange} label={'Location'} name={'username'} placeholder={'username/email'} />
                     <div className=" md:grid grid-cols-2  space-x-10 ">
                         <CustmInput handleChange={handleChange} label={'Current Salary'} name={'curr_sal'} placeholder={'per month'} />
                         <CustmInput handleChange={handleChange} label={'Expected Salary'} name={'exp_sal'} placeholder={'per month'} />

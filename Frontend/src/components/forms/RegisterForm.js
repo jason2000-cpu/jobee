@@ -2,9 +2,12 @@ import { useState } from "react";
 import CustmInput from "../UI/CustmInput";
 import { Link } from "react-router-dom";
 import SocialLogins from '../UI/SocialLogins'
+import useUserHook from "../../hooks/useUserHook";
 
 function RegisterForm() {
     const [ formData, setFormData ] = useState({})
+    const { register, userLoading} = useUserHook();
+
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -13,12 +16,14 @@ function RegisterForm() {
 
     const handleSubmit = () => {
         console.log(formData);
+        register(formData);
+
     }
 
     return (
         <div className="md:mx-24 border shadow-lg rounded-lg px-4 py-6 space-y-6">
             <div className="md:grid grid-cols-2 gap-10 space-y-4 md:space-y-0">
-                    <CustmInput handleChange={handleChange} required={true} name={'Fname'} label={'Full Name'} placeholder={'firstname..'} />
+                    <CustmInput handleChange={handleChange} required={true} name={'fullname'} label={'Full Name'} placeholder={'firstname..'} />
                 <div>
                     <div>
                         <CustmInput handleChange={handleChange} required={true} name={'email'} label={'email'} type="email" placeholder={'secondname..'} />
