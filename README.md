@@ -21,6 +21,11 @@ are legitimate and relevant. This solution would streamline the job search proce
 graduates, helping them to quickly find suitable roles and connect with employers in need of their 
 skills.
 
+## Our Team
+- This project was done  by:
+    1. [Jackson Mwangi](https://github.com/jason2000-cpu)
+    2. [Stewart Nyaruwata](https://github.com/steve2700)
+
 ## Documentation
 1. [Front End](/Frontend/README.md)
 2. [Backend](/Backend/README.md)

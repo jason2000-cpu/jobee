@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineBookmark } from "react-icons/md";
@@ -11,11 +11,16 @@ import Card from "../components/UI/Card";
 import Footer from "../components/footer";
 import { useState } from "react";
 import SharePopup from "../components/UI/SharePopup";
+import { handleSuccess } from "../components/UI/AlertHandler";
+import { useAuth } from "../contexts/Authcontext";
 
 
 function JobDetailView() {
     const [ isSaved, setIsSaved ] = useState(false);
     const [  isShareOpen, setIsShareOpen ] = useState(false);
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
 
     const {jobId } = useParams();
     console.log("URL PARAMETERS:::", jobId );
@@ -30,6 +35,11 @@ function JobDetailView() {
         setIsShareOpen(!isShareOpen);
     }
 
+    const handleJobApply = (details) => {
+        isAuthenticated ? handleSuccess(`You application for the ${details.role} role has been sent to ${details.hiring_company}`) :
+         navigate('/register');
+    }
+
     return (
         <div>
             <NavBar />
@@ -38,7 +48,7 @@ function JobDetailView() {
                     <div className="md:flex justify-between">
                         <h1 className="text-3xl font-bold">{details.role}</h1>
                         <div className="my-4 flex justify-between md:mt-0  space-x-4">
-                            <button className="border rounded-lg bg-[#6300B3] text-white py-1 px-2">APPLY NOW</button>
+                            <button onClick={()=> handleJobApply(details)} className="border rounded-lg bg-[#6300B3] text-white py-1 px-2">APPLY NOW</button>
                             <div className="flex space-x-4">
                                 <div onClick={handleSave} className="cursor-pointer flex items-center px-1 border border-[#6300B3] rounded-lg">
                                     { isSaved ? <MdOutlineBookmark size={24} color="#6300B3" /> : <MdOutlineBookmarkBorder size={24} color="#6300B3" />}
