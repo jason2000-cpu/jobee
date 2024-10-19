@@ -11,16 +11,16 @@ function Card({ details }) {
         <div className="border rounded-lg shadow px-4 py-2 space-y-4">
             <div className="flex justify-between">
                 <div className="flex items-center space-x-4">
-                    <img className="w-28 h-24" src={details.company_logo_url} alt={details.hiring_company} />
+                    <img className="w-28 h-24" src={details.image} alt={details.company} />
                     <div className="flex flex-col space-y-2">
-                        <span className="text-2xl font-bold">{details.hiring_company}</span>
-                        <span className="text-[20px]">{details.role_type}</span>
+                        <span className="text-2xl font-bold">{details.company}</span>
+                        <span className="text-[20px]">{details.employmentType}</span>
                     </div>
                 </div>
                 <MdOutlineBookmarkBorder size={24} className="cursor-pointer" />
             </div>
             <div className="flex flex-col">
-                <span className="text-xl font-bold">{details.role}</span>
+                <span className="text-xl font-bold">{details.title}</span>
                 <div className="flex space-x-2 py-2 items-center">
                     <IoLocationOutline size={20} />
                     <span>{details.location}</span>

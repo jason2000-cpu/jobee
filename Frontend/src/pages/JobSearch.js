@@ -6,12 +6,14 @@ import { workModes, experienceLevels, jobType } from '../utils/searchTags';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import { allJobs } from '../utils/featuredJobsDetails';
+import useJobPosts from './../hooks/useJobPosts'
 
 
 function JobSearch() {
     const [ jobTypeIsOpen, setJobTypeIsOpen ] = useState(true);
     const [workModesIsOpen, setWorkModeIsOpen ] = useState(true);
     const [ experienceLevelsIsOpen, setExpereinceLevelsIsOpen ] = useState(true);
+    const { isLoading, jobPosts } = useJobPosts();
 
 
     const handleClose = (name) => {
@@ -139,10 +141,12 @@ function JobSearch() {
                             </div>
                             <div className=' h-full md:grid grid-cols-3 gap-4 overflow-scroll scrollbar-hide' >
                                 {
-                                    allJobs.map((details) => <Card details={details} /> )
-                                }
-                                {
-                                    allJobs.map((details) => <Card details={details} />) 
+                                    isLoading ? (<div>Jobs Loading.....</div>) :
+                                    (
+                                
+                                        jobPosts.map((details) => <Card details={details} /> )
+                                
+                                    )
                                 }
                             </div>
                         </div>
